@@ -17,6 +17,7 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps) {
+  console.log(post);
   return (
     <>
       <Head>
@@ -56,6 +57,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   const prismic = getPrismicClient(req);
 
   const response = await prismic.getByUID<any>("post", String(slug), {});
+  console.log(JSON.stringify(response, null, 2));
   const post = {
     slug,
     title: RichText.asText(response?.data.title),
